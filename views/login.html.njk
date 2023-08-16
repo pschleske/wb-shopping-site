@@ -1,0 +1,16 @@
+{% extends "base.html.njk" %}
+
+{% block body %}
+
+{{message}} <br/>
+
+<form action="/process-login" method="POST">
+    <label for="username">Username:</label>
+    <input name="username" type="text" required>
+    <label for="password">Password:</label>
+    <input name="password" type="password" required>
+
+    <button> Sign In </button>
+</form>
+
+{% endblock %}
