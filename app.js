@@ -88,7 +88,7 @@ app.get('/cart', (req, res) => {
   // Make sure your function can also handle the case where no cart has
   // been added to the session
   // - pass the total order cost and the array of animal objects to the template
-  res.render('cart.html.njk', { animals: animals, orderTotal: orderTotal });
+  res.render('cart.html.njk', { animals: animals, orderTotal: orderTotal, name: req.session.name });
 });
 
 app.get('/checkout', (req, res) => {
@@ -108,6 +108,8 @@ app.post('/process-login', (req, res) => {
   for (const user of users) {
     if (req.body.username === user.username && req.body.password === user.password) {
       req.body.username = user.username
+      // this is to save the name to the session
+      req.session.name = user.name
       res.redirect("/all-animals")
       return;
     }
